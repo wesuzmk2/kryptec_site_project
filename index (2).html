@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KRYPTEC</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#060606;
+  color:#f5f5f5;
+  overflow-x:hidden;
+}
+
+/* FUNDO */
+
+.background{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+}
+
+.glow{
+  position:absolute;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  filter:blur(140px);
+  opacity:0.08;
+}
+
+.glow-1{
+  background:#00ff88;
+  top:-250px;
+  right:-150px;
+}
+
+.glow-2{
+  background:#1f6fff;
+  bottom:-300px;
+  left:-200px;
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:999;
+  backdrop-filter:blur(14px);
+  background:rgba(6,6,6,0.7);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+
+.logo span{
+  color:#00ff88;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#9d9d9d;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:140px 20px 80px;
+}
+
+.hero-content{
+  max-width:900px;
+  animation:fadeUp 1s ease;
+}
+
+.badge{
+  display:inline-block;
+  padding:10px 18px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  color:#bdbdbd;
+  font-size:13px;
+  margin-bottom:25px;
+  background:rgba(255,255,255,0.02);
+}
+
+.hero h1{
+  font-size:72px;
+  line-height:1.05;
+  margin-bottom:28px;
+  font-weight:bold;
+}
+
+.hero h1 span{
+  color:#00ff88;
+}
+
+.hero p{
+  font-size:20px;
+  color:#9d9d9d;
+  line-height:1.7;
+  max-width:720px;
+  margin:auto auto 40px;
+}
+
+/* BOTÕES */
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:16px 30px;
+  border-radius:14px;
+  text-decoration:none;
+  transition:0.3s;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.btn-primary{
+  background:#00ff88;
+  color:black;
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 25px rgba(0,255,136,0.2);
+}
+
+.btn-secondary{
+  border:1px solid rgba(255,255,255,0.08);
+  color:white;
+}
+
+.btn-secondary:hover{
+  border-color:#00ff88;
+}
+
+/* SEÇÕES */
+
+.section{
+  padding:120px 20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  margin-bottom:70px;
+  text-align:center;
+}
+
+.section-title h2{
+  font-size:46px;
+  margin-bottom:18px;
+}
+
+.section-title p{
+  color:#8a8a8a;
+  max-width:700px;
+  margin:auto;
+  line-height:1.7;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+/* CARDS */
+
+.card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:24px;
+  padding:34px;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(0,255,136,0.25);
+}
+
+.card-icon{
+  font-size:42px;
+  margin-bottom:24px;
+}
+
+.card h3{
+  font-size:24px;
+  margin-bottom:14px;
+}
+
+.card p{
+  color:#9a9a9a;
+  line-height:1.7;
+}
+
+/* GROWTH */
+
+.growth-box{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:32px;
+  padding:60px;
+  text-align:center;
+}
+
+.growth-box h2{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+.growth-box p{
+  color:#9d9d9d;
+  line-height:1.8;
+  max-width:700px;
+  margin:auto auto 40px;
+}
+
+.growth-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.growth-item{
+  background:#0d0d0d;
+  border-radius:18px;
+  padding:24px;
+  color:#cfcfcf;
+}
+
+/* CTA */
+
+.cta{
+  text-align:center;
+}
+
+.cta h2{
+  font-size:54px;
+  margin-bottom:20px;
+}
+
+.cta p{
+  color:#9d9d9d;
+  margin-bottom:40px;
+  line-height:1.7;
+}
+
+/* FOOTER */
+
+.footer{
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:40px 20px;
+  text-align:center;
+  color:#707070;
+  font-size:14px;
+}
+
+/* ANIMAÇÃO */
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+  .hero h1{
+    font-size:52px;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .section-title h2,
+  .growth-box h2,
+  .cta h2{
+    font-size:34px;
+  }
+
+  .growth-box{
+    padding:35px 25px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+  <div class="nav-container">
+
+    <div class="logo">
+      KRYP<span>TEC</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#store">Loja</a>
+      <a href="#services">Serviços</a>
+      <a href="#growth">Growth</a>
+      <a href="#contact">Contato</a>
+    </div>
+
+  </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="badge">
+      Soluções tecnológicas e infraestrutura digital
+    </div>
+
+    <h1>
+      Tecnologia aplicada para
+      <span>negócios modernos</span>
+    </h1>
+
+    <p>
+      Reparos eletrônicos, automação, software,
+      ERP e estratégias digitais integradas para
+      clientes e empresas.
+    </p>
+
+    <div class="buttons">
+
+      <a href="https://wa.me/5599999999999" class="btn btn-primary">
+        Solicitar orçamento
+      </a>
+
+      <a href="#services" class="btn btn-secondary">
+        Explorar serviços
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVIÇOS -->
+
+<section class="section reveal" id="services">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Serviços</h2>
+
+      <p>
+        Estrutura tecnológica completa para suporte,
+        automação, desenvolvimento e crescimento digital.
+      </p>
+
+    </div>
+    
+    <!-- ADICIONE ESSE CARD DENTRO DA SEÇÃO "SERVIÇOS" -->
+
+    <div class="card">
+      <div class="card-icon">🛒</div>
+    
+      <h3>E-commerce</h3>
+    
+      <p>
+        Loja digital com produtos tecnológicos,
+        acessórios, automação e soluções para o dia a dia.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Reparos Eletrônicos</h3>
+        <p>
+          Diagnóstico e manutenção de celulares,
+          notebooks, placas e dispositivos eletrônicos.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Automação Residencial</h3>
+        <p>
+          Soluções inteligentes para controle,
+          monitoramento e integração residencial.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Desenvolvimento</h3>
+        <p>
+          Criação de sistemas personalizados,
+          dashboards e soluções sob medida.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <h3>Consultoria ERP</h3>
+        <p>
+          Organização de processos, integração
+          operacional e automação empresarial.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STORE SECTION -->
+
+<section class="section reveal" id="store">
+
+  <div class="container">
+
+    <div class="growth-box">
+
+      <h2>KRYPTEC Store</h2>
+
+      <p>
+        Produtos tecnológicos selecionados para
+        performance, automação e produtividade.
+      </p>
+
+      <div class="growth-grid">
+
+        <div class="growth-item">
+          🎧 Acessórios
+        </div>
+
+        <div class="growth-item">
+          💡 Automação
+        </div>
+
+        <div class="growth-item">
+          ⌨️ Periféricos
+        </div>
+
+        <div class="growth-item">
+          🔋 Gadgets
+        </div>
+
+      </div>
+
+      <br><br>
+
+      <a href="#" class="btn btn-primary">
+        Explorar loja
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- GROWTH -->
+
+<section class="section reveal" id="growth">
+
+  <div class="container">
+
+    <div class="growth-box">
+
+      <h2>KRYPTEC Growth</h2>
+
+      <p>
+        Estratégias digitais focadas em presença,
+        geração de oportunidades e crescimento comercial.
+      </p>
+
+      <div class="growth-grid">
+
+        <div class="growth-item">
+          📈 Gestão de tráfego
+        </div>
+
+        <div class="growth-item">
+          🎯 Campanhas digitais
+        </div>
+
+        <div class="growth-item">
+          📲 Conversão de leads
+        </div>
+
+        <div class="growth-item">
+          🚀 Estratégia de crescimento
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="section cta reveal" id="contact">
+
+  <div class="container">
+
+    <h2>
+      Infraestrutura, suporte e crescimento digital
+    </h2>
+
+    <p>
+      Atendimento técnico para clientes locais
+      e soluções digitais para empresas.
+    </p>
+
+    <a href="https://wa.me/5599999999999" class="btn btn-primary">
+      Entrar em contato
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  © KRYPTEC — Soluções tecnológicas
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+
+  reveals.forEach((el) => {
+
+    const top = el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 100){
+      el.classList.add("active");
+    }
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
